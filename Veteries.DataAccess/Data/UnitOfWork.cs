@@ -17,14 +17,10 @@ namespace Veteries.DataAccess.Data
         }
 
         public ISpeciesRepository Species { get; private set; }
-
-        public ISpeciesRepository SpeciesRepository => throw new NotImplementedException();
-
         public void Dispose()
         {
             _db.Dispose();
         }
-
         public void Save()
         {
             _db.SaveChanges();
