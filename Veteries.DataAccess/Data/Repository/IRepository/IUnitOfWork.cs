@@ -4,7 +4,7 @@ namespace Veteries.DataAccess.Data.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        ISpeciesRepository SpeciesRepository { get; }
+        ISpeciesRepository Species { get; }
         void Save();
     }
 }
