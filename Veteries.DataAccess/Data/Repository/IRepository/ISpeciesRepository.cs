@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Veteries.Models;
 
 namespace Veteries.DataAccess.Data.Repository.IRepository
 {
-    public interface ISpeciesRepository
+    public interface ISpeciesRepository : IRepository<Species>
     {
+        IEnumerable<SelectListItem> GetSoeciesListForDropDown();
+
+        void Update(Species species);
     }
 }
