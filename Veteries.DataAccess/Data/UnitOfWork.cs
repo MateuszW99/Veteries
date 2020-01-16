@@ -17,6 +17,8 @@ namespace Veteries.DataAccess.Data
         }
 
         public ISpeciesRepository Species { get; private set; }
+        public IPatientRepository Patient { get; private set; }
+
         public void Dispose()
         {
             _db.Dispose();
