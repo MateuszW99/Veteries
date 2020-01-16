@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Veteries.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Veteries.DataAccess;
 
 namespace Veteries
 {
@@ -31,8 +31,8 @@ namespace Veteries
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
+            services.AddControllersWithViews();
+            
             //services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
