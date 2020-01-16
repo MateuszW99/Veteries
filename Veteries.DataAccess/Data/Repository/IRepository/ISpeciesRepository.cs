@@ -6,7 +6,7 @@ namespace Veteries.DataAccess.Data.Repository.IRepository
 {
     public interface ISpeciesRepository : IRepository<Species>
     {
-        IEnumerable<SelectListItem> GetSoeciesListForDropDown();
+        IEnumerable<SelectListItem> GetSpeciesListForDropDown();
 
         void Update(Species species);
     }

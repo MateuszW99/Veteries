@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
@@ -17,7 +15,7 @@ namespace Veteries.DataAccess.Data.Repository
             _db = db;
         }
 
-        public IEnumerable<SelectListItem> GetSoeciesListForDropDown()
+        public IEnumerable<SelectListItem> GetSpeciesListForDropDown()
         {
             return _db.Species.Select(i => new SelectListItem()
             {
