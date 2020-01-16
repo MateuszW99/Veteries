@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Veteries</title>
+    <title>Veteries</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <!-- Plugins below -->
@@ -24,17 +24,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
+
+                        <li class="nav-item dropdown">
                             <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
                             Admin
                             </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item text-light" asp-page="">Species</a> 
+                            <div class="dropdown-menu bg-secondary">
+                                <a class="dropdown-item-text text-light" asp-page="">Species</a>
+                                <a class="dropdown-item-text text-light" asp-page="">Vets</a>
+                                <a class="dropdown-item-text text-light" asp-page="">Customers</a>
                             </div>
                         </li>
+
                     </ul>
                 </div>
             </div>
