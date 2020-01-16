@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Veteries.DataAccess;
+using Veteries.DataAccess.Data.Repository.IRepository;
+using Veteries.DataAccess.Data;
 
 namespace Veteries
 {
@@ -26,6 +28,9 @@ namespace Veteries
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // Dependencies
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Use basic MVC routing
             services.AddMvc(options => options.EnableEndpointRouting = false)

@@ -13,6 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
 
@@ -22,7 +24,9 @@
 
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="Pages\Admin\Customers\" />
+    <Folder Include="Pages\Admin\Vets\" />
+    <Folder Include="Pages\Customers\" />
   </ItemGroup>
 
 </Project>
