@@ -27,17 +27,12 @@
                     <div class="col-9 offset-3">
                         <div class="row">
                             <div class="col-6">
-                                @if (Model.SpeciesObj.Id != 0)
-                                {
-                                    <button type="submit" class="btn btn-primary form-control">Update</button>
-                                }
-                                else
-                                {
-                                    <button type="submit" class="btn btn-primary form-control">Add</button>
-                                }
+                                <button type="submit" class="btn btn-primary form-control">
+                                    @(Model.SpeciesObj.Id != 0 ? "Update" : "Add")
+                                </button>
                             </div>
                             <div class="col-6">
-                                <a asp-page="./Index" class="btn btn-success form-control"></a>
+                                <a asp-page="./Index" class="btn btn-success form-control">Back to list</a>
                             </div>
                         </div>
                     </div>
