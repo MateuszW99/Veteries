@@ -5,6 +5,11 @@
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--Store id in the hidden field to make sure it's not 0 when updating-->
+            @if(Model.SpeciesObj.Id != 0)
+            {
+                <input type="hidden" asp-for="SpeciesObj.Id" />
+            }
 
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
                 <h2 class="text-primary">Species</h2>
