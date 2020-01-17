@@ -14,11 +14,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
 
 
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="Pages\Admin\" />
     <Folder Include="Pages\Customer\Home\" />
     <Folder Include="Pages\Vet\" />
@@ -26,6 +29,11 @@
     <ProjectReference Include="..\Veteries.DataAccess\Veteries.DataAccess.csproj" />
     <ProjectReference Include="..\Veteries.Models\Veteries.Models.csproj" />
     <ProjectReference Include="..\Veteries.Utility\Veteries.Utility.csproj" />
+=======
+    <Folder Include="Pages\Admin\Customers\" />
+    <Folder Include="Pages\Admin\Vets\" />
+    <Folder Include="Pages\Customers\" />
+>>>>>>> LayoutUpdates
   </ItemGroup>
 
 </Project>
