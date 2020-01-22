@@ -17,9 +17,10 @@ namespace Veteries.Models
         public string Name { get; set; }
 
         [Required]
+        [RegularExpression(@"\d{2,4}[x-\s]?\d{3, }[x-\s]?d{3,4}")]
         public string PhoneNumber { get; set; }
 
         [Required]
-        public string EailAddress { get; set; }
+        public string EmailAddress { get; set; }
     }
 }
