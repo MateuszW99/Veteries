@@ -14,6 +14,7 @@ namespace Veteries.DataAccess.Data
         {
             _db = db;
             Species = new SpeciesRepository(_db);
+            Patient = new PatientRepository(_db);
         }
 
         public ISpeciesRepository Species { get; private set; }
