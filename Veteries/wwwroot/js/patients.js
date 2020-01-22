@@ -7,7 +7,7 @@ $(document).ready(function () {
 function loadList() {
     dataTable = $('#DT_load').DataTable({
         "ajax": {
-            "url": "/api/patients",
+            "url": "/api/patient",
             "type": "GET",
             "datatype": "json"
         },
@@ -29,7 +29,7 @@ function loadList() {
                 }, "width": "30%"
             }],
         "language": {
-            "emptyTable": "No data found,"
+            "emptyTable": "No data found."
         },
         "width": "100%"
     });
