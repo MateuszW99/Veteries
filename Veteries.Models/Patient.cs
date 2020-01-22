@@ -15,7 +15,8 @@ namespace Veteries.Models
         public string Name { get; set; }
 
         [Required]
-        public string Age { get; set; }
+        [RegularExpression(@"\d*")]
+        public int Age { get; set; }
 
 
         [Display(Name = "Owner")]
