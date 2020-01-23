@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Veteries.DataAccess.Data.Repository.IRepository;
 
@@ -41,35 +42,29 @@ namespace Veteries.DataAccess.Data.Repository
             // includeProperties are separated with commas
             if (includeProperties != null)
             {
-                foreach (var includeProp in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(includeProp);
+                    query = query.Include(includeProperty);
                 }
             }
 
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-
-            return query.ToList();
+            return orderBy != null ? orderBy(query).ToList() : query.ToList();
         }
-
-        public T GetFirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>> filter = null, string includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
             if (filter != null)
             {
-                query.Where(filter);
+                query = query.Where(filter);
             }
 
             // includeProperties are separated with commas
             if (includeProperties != null)
             {
-                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(includeProp);
+                    query = query.Include(includeProperty);
                 }
             }
 
