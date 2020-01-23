@@ -50,7 +50,7 @@ namespace Veteries.Pages.Admin.Patients
                 _unitOfWork.Patient.Update(PatientObj);
             }
             _unitOfWork.Save();
-            return RedirectToPage("/Index");
+            return RedirectToPage("./Index");
         }
     }
 }
