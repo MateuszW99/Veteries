@@ -34,5 +34,23 @@ namespace Veteries.Pages.Admin.Patients
             }
             return Page();
         }
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            if (PatientObj.Id == 0)
+            {
+                _unitOfWork.Patient.Add(PatientObj);
+            }
+            else
+            {
+                _unitOfWork.Patient.Update(PatientObj);
+            }
+            _unitOfWork.Save();
+            return RedirectToPage("/Index");
+        }
     }
 }
