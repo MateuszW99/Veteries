@@ -13,16 +13,16 @@ function loadList() {
         },
         "columns": [
             { "data": "name", "wdith": "40%" },
-            { "data": "species", "width": "40%" },
-            { "data": "age", "width": "20%" },
+            { "data": "age", "width": "10%" },
+            { "data": "species", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return ` <div class="text-center">
-                                <a href="/Admin/species/upsert?id=${data}" class="btn btn-success text-white> style="cursor:pointer; width:100px;">
-                                    <i class="far fa-edit></i> Edit
+                                <a href="/Admin/patients/upsert?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
+                                    <i class="far fa-edit"></i> Edit
                                 </a>
-                                <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;" onclick=Delete('api/patients/+${data})>
+                                <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;" onclick=Delete('api/patient/'+${data})>
                                     <i class="far fa-trash-alt"></i> Delete
                                 </a>
                             </div>`;
@@ -38,7 +38,7 @@ function loadList() {
 function Delete(url) {
     swal({
         title: "Are you sure you want to Delete?",
-        text: "You won't be able to restore the data.",
+        text: "You will not be able to restore the data!",
         icon: "warning",
         buttons: true,
         dangerMode: true
@@ -50,13 +50,13 @@ function Delete(url) {
                 success: function (data) {
                     if (data.success) {
                         toastr.success(data.message);
-                        data.ajax.reload();
+                        dataTable.ajax.reload();
                     }
                     else {
-                        toast.error(data.message);
+                        toastr.error(data.message);
                     }
                 }
             });
         }
-    };
+    });
 }
