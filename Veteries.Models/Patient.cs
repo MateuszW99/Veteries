@@ -18,11 +18,11 @@ namespace Veteries.Models
         [RegularExpression(@"\d*")]
         public int Age { get; set; }
 
-        [Display(Name = "Owner")]
-        public int OwnerId { get; set; }
+        //[Display(Name = "Owner")]
+        //public int OwnerId { get; set; }
 
-        [ForeignKey("OwnerId")]
-        public virtual Person Owner { get; set; }
+        //[ForeignKey("OwnerId")]
+        //public virtual Person Owner { get; set; }
 
         [Display(Name = "Species")]
         public int SpeciesId { get; set; }
