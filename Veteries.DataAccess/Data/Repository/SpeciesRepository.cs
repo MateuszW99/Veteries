@@ -27,9 +27,8 @@ namespace Veteries.DataAccess.Data.Repository
         public void Update(Species species)
         {
             var objFromDb = _db.Species.FirstOrDefault(s => s.Id == species.Id);
-
-            objFromDb.Name = objFromDb.Name;
-
+            
+            objFromDb.Name = species.Name;
             _db.SaveChanges();
         }
     }
