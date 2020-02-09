@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
 
@@ -15,9 +16,9 @@ namespace Veteries.DataAccess.Data.Repository
             _db = db;
         }
 
-        public IEnumerable<SelectListItem> GetSpeciesListForDropDown()
+        public IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> GetSpeciesListForDropDown()
         {
-            return _db.Species.Select(i => new SelectListItem()
+            return _db.Species.Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
             {
                 Text = i.Name,
                 Value = i.Id.ToString()
@@ -31,5 +32,6 @@ namespace Veteries.DataAccess.Data.Repository
             objFromDb.Name = species.Name;
             _db.SaveChanges();
         }
+
     }
 }
