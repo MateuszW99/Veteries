@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
+using Veteries.Models.ViewModels;
 
 namespace Veteries.Pages.Admin.Patients
 {
@@ -19,14 +21,18 @@ namespace Veteries.Pages.Admin.Patients
         }
 
         [BindProperty]
-        public Patient PatientObj { get; set; }
+        public PatientVM PatientObj { get; set; }
 
         public IActionResult OnGet(int? id)
         {
-            PatientObj = new Patient();
+            PatientObj = new PatientVM
+            {
+                Patient = new Patient(),
+                SpeciesList = _unitOfWork.Species.GetSpeciesListForDropDown()
+            };
             if (id != null)
             {
-                PatientObj = _unitOfWork.Patient.GetFirstOrDefault(s => s.Id == id);
+                PatientObj.Patient = _unitOfWork.Patient.GetFirstOrDefault(s => s.Id == id);
                 if (PatientObj == null)
                 {
                     return NotFound();
@@ -41,13 +47,13 @@ namespace Veteries.Pages.Admin.Patients
             {
                 return Page();
             }
-            if (PatientObj.Id == 0)
+            if (PatientObj.Patient.Id == 0)
             {
-                _unitOfWork.Patient.Add(PatientObj);
+                _unitOfWork.Patient.Add(PatientObj.Patient);
             }
             else
             {
-                _unitOfWork.Patient.Update(PatientObj);
+                _unitOfWork.Patient.Update(PatientObj.Patient);
             }
             _unitOfWork.Save();
             return RedirectToPage("./Index");

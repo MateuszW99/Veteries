@@ -4,12 +4,12 @@
 <form method="post" asp-action="Upsert">
     <div class="row px-2 backgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if(Model.PatientObj.Id != 0)
+        @if(Model.PatientObj.Patient.Id != 0)
         {
-            <input type="hidden" asp-for="PatientObj.Id" />
+            <input type="hidden" asp-for="PatientObj.Patient.Id" />
         }
         <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
-            <h2 class="text-primary">@(Model.PatientObj.Id != 0 ? "Update" : "Add") Patient</h2>
+            <h2 class="text-primary">@(Model.PatientObj.Patient.Id != 0 ? "Update" : "Add") Patient</h2>
         </div>
 
         <div class="col-8 pt-3">
@@ -17,27 +17,29 @@
             <div class="form-group row">
 
                 <div class="col-3">
-                    <label asp-for="PatientObj.Name"></label>
+                    <label asp-for="PatientObj.Patient.Name"></label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" asp-for="PatientObj.Name" />
-                    <span class="text-danger" asp-validation-for="PatientObj.Name"></span>
+                    <input class="form-control" asp-for="PatientObj.Patient.Name" />
+                    <span class="text-danger" asp-validation-for="PatientObj.Patient.Name"></span>
                 </div>
 
                 <div class="col-3">
-                    <label asp-for="PatientObj.Age"></label>
+                    <label asp-for="PatientObj.Patient.Age"></label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" asp-for="PatientObj.Age" />
-                    <span class="text-danger" asp-validation-for="PatientObj.Age"></span>
+                    <input class="form-control" asp-for="PatientObj.Patient.Age" />
+                    <span class="text-danger" asp-validation-for="PatientObj.Patient.Age"></span>
                 </div>
 
                 <div class="col-3">
-                    <label asp-for="PatientObj.Species"></label>
+                    <label asp-for="PatientObj.Patient.SpeciesId"></label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" asp-for="PatientObj.Species.Name" />
-                    <span class="text-danger" asp-validation-for="PatientObj.Species.Name"></span>
+                    @Html.DropDownListFor(m => m.PatientObj.Patient.SpeciesId,
+                                                 Model.PatientObj.SpeciesList, 
+                                                 "Please select Species",
+                                                 new { @class = "form-control" })
                 </div>
 
             </div>
@@ -47,7 +49,7 @@
                     <div class="row">
                         <div class="col-6">
                             <button type="submit" class="btn btn-primary form-control">
-                                @(Model.PatientObj.Id != 0 ? "Update" : "Add")
+                                @(Model.PatientObj.Patient.Id != 0 ? "Update" : "Add")
                             </button>
                         </div>
                         <div class="col-6">
