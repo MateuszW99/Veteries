@@ -14,7 +14,7 @@ function loadList() {
         "columns": [
             { "data": "name", "wdith": "40%" },
             { "data": "age", "width": "10%" },
-            { "data": "species", "width": "20%" },
+            { "data": "species.name", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {

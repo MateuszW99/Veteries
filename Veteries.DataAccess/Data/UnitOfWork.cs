@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Veteries.DataAccess.Data.Repository;
+﻿using Veteries.DataAccess.Data.Repository;
 using Veteries.DataAccess.Data.Repository.IRepository;
 
 namespace Veteries.DataAccess.Data

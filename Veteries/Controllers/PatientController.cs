@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Helpers;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Veteries.DataAccess.Data.Repository.IRepository;
 
 namespace Veteries.Controllers
@@ -23,7 +17,20 @@ namespace Veteries.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(new { data = _unitOfWork.Patient.GetAll() });
+            return Json(new { data = _unitOfWork.Patient.GetAll(null, null, "Species") });
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var objFromDb = _unitOfWork.Patient.GetFirstOrDefault(u => u.Id == id);
+            if (objFromDb == null)
+            {
+                return Json (new {success = false, message = "Error while deleting."});
+            }
+            _unitOfWork.Patient.Remove(objFromDb);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Deleted successfully." });
         }
 
     }

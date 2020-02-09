@@ -15,7 +15,6 @@
         <div class="col-8 pt-3">
 
             <div class="form-group row">
-
                 <div class="col-3">
                     <label asp-for="PatientObj.Patient.Name"></label>
                 </div>
@@ -40,8 +39,8 @@
                                                  Model.PatientObj.SpeciesList, 
                                                  "Please select Species",
                                                  new { @class = "form-control" })
+                    <span class="text-danger" asp-validation-for="PatientObj.Patient.SpeciesId"></span>
                 </div>
-
             </div>
 
             <div class="form-group row">
