@@ -20,7 +20,7 @@ namespace Veteries.Controllers
             return Json(new { data = _unitOfWork.Patient.GetAll(null, null, "Species") });
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var objFromDb = _unitOfWork.Patient.GetFirstOrDefault(u => u.Id == id);
