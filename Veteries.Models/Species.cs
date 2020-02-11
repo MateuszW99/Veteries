@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Veteries.Models.Interfaces;
 
 namespace Veteries.Models
 {
-    public class Species
+    public class Species : ISpecies
     {
         [Key]
         public int Id { get; set; }

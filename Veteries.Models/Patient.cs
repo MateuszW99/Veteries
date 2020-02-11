@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using Veteries.Models.Interfaces;
 
 namespace Veteries.Models
 {
-    public class Patient
+    public class Patient :IPatient
     {
         [Key]
         public int Id { get; set; }
@@ -18,11 +16,11 @@ namespace Veteries.Models
         [RegularExpression(@"\d*")]
         public int Age { get; set; }
 
-        //[Display(Name = "Owner")]
-        //public int OwnerId { get; set; }
+        [Display(Name = "Owner")]
+        public int OwnerId { get; set; }
 
-        //[ForeignKey("OwnerId")]
-        //public virtual Person Owner { get; set; }
+        [ForeignKey("OwnerId")]
+        public virtual Person Owner { get; set; }
 
         [Display(Name = "Species")]
         public int SpeciesId { get; set; }

@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using Veteries.Models.Interfaces;
 
 namespace Veteries.Models
 {
-    public class Person
+    public class Person : IPerson
     {
         [Key]
         public int Id { get; set; }
 
-        // TODO: 
-        // add a pet or a list<pet>
+        [Required]
+        public string FirstName { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string LastName { get; set; }
 
         [Required]
-        [RegularExpression(@"\d{2,4}[x-\s]?\d{2,4}[x-\s]?d{3,4}")]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         [Required]
-        [RegularExpression(@"[a-zA-Z]+@[a-z]+\.[a-z]{1,3}")]
+        [EmailAddress]
         public string EmailAddress { get; set; }
     }
 }
