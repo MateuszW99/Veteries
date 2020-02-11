@@ -21,5 +21,10 @@ namespace Veteries.Models
         [Required]
         [EmailAddress]
         public string EmailAddress { get; set; }
+
+        public string FullName()
+        {
+            return @"{FirstName} {LastName}";
+        }
     }
 }
