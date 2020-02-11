@@ -6,6 +6,7 @@ namespace Veteries.DataAccess.Data.Repository.IRepository
     {
         ISpeciesRepository Species { get; }
         IPatientRepository Patient { get; }
+        ICustomerRepository Customer { get; }
         void Save();
     }
 }
