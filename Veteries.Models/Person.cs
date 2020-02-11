@@ -17,10 +17,11 @@ namespace Veteries.Models
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression(@"\d{2,4}[x-\s]?\d{3, }[x-\s]?d{3,4}")]
+        [RegularExpression(@"\d{2,4}[x-\s]?\d{2,4}[x-\s]?d{3,4}")]
         public string PhoneNumber { get; set; }
 
         [Required]
+        [RegularExpression(@"[a-zA-Z]+@[a-z]+\.[a-z]{1,3}")]
         public string EmailAddress { get; set; }
     }
 }
