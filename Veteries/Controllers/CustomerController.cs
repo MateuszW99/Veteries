@@ -17,5 +17,24 @@ namespace Veteries.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+        [HttpGet]
+        public IActionResult OnGet()
+        {
+            return Json(new { data = _unitOfWork.Customer.GetAll() });
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var objFromDb = _unitOfWork.Customer.GetFirstOrDefault(u => u.Id == id);
+            if (objFromDb == null)
+            {
+                return Json(new { success = false, message = "Error while deleting."});
+            }
+            _unitOfWork.Customer.Remove(objFromDb);
+            _unitOfWork.Save();
+            return Json(new { success = true, messsage = "Deleted successfully." });
+        }
     }
 }
