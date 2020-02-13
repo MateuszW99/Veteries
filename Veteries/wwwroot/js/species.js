@@ -5,7 +5,7 @@ $(document).ready(function () {
 }); 
 
 function loadList() {
-    dataTable = $('#DT_load').DataTable({
+    dataTable = $('#DT_species').DataTable({
         "ajax": {
             "url": "/api/species",
             "type": "GET",
