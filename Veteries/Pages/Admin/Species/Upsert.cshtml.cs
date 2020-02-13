@@ -16,7 +16,6 @@ namespace Veteries.Pages.Admin.Species
         [BindProperty]
         public Models.Species SpeciesObj { get; set; }
 
-
         public IActionResult OnGet(int? id)
         {
             SpeciesObj = new Models.Species();
@@ -30,8 +29,7 @@ namespace Veteries.Pages.Admin.Species
             }
             return Page();
         }
-
-        
+      
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
