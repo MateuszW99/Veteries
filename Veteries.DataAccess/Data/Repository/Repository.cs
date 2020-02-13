@@ -12,7 +12,6 @@ namespace Veteries.DataAccess.Data.Repository
         protected readonly DbContext Context;
         internal DbSet<T> dbSet;
 
-
         public Repository(DbContext context)
         {
             Context = context;
@@ -49,6 +48,7 @@ namespace Veteries.DataAccess.Data.Repository
 
             return orderBy != null ? orderBy(query).ToList() : query.ToList();
         }
+
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;

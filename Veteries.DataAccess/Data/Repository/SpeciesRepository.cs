@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
 
