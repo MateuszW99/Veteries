@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
@@ -19,14 +15,15 @@ namespace Veteries.Pages.Admin.Customers
         }
 
         [BindProperty]
-        public Person Customer { get; set; }
+        public Person CustomerObj { get; set; }
 
         public IActionResult OnGet(int? id)
         {
+            CustomerObj = new Person();
             if (id != null)
             {
-                Customer = _unitOfWork.Customer.GetFirstOrDefault(u => u.Id == id);
-                if (Customer == null)
+                CustomerObj = _unitOfWork.Customer.GetFirstOrDefault(u => u.Id == id);
+                if (CustomerObj == null)
                 {
                     return Page();
                 }
@@ -40,13 +37,13 @@ namespace Veteries.Pages.Admin.Customers
             {
                 return Page();
             }
-            if (Customer.Id == 0)
+            if (CustomerObj.Id == 0)
             {
-                _unitOfWork.Customer.Add(Customer);
+                _unitOfWork.Customer.Add(CustomerObj);
             }
             else
             {
-                _unitOfWork.Customer.Update(Customer);
+                _unitOfWork.Customer.Update(CustomerObj);
             }
             _unitOfWork.Save();
             return RedirectToPage("./Index");
