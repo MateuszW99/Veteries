@@ -8,18 +8,20 @@ namespace Veteries.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required, MinLength(2)]
+        [Display(Name = "First name")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required, MinLength(2)]
+        [Display(Name = "Last name")]
         public string LastName { get; set; }
 
-        [Required]
-        [Phone]
+        [Required, Phone]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [EmailAddress]
+        [Required, EmailAddress]
+        [Display(Name = "Email address")]
         public string EmailAddress { get; set; }
 
         public string FullName()
