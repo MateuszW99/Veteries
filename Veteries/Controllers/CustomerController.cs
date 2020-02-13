@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Veteries.DataAccess.Data;
+using Veteries.DataAccess.Data.Repository.IRepository;
 
 namespace Veteries.Controllers
 {
@@ -12,8 +13,8 @@ namespace Veteries.Controllers
     [ApiController]
     public class CustomerController : Controller
     {
-        private readonly UnitOfWork _unitOfWork;
-        public CustomerController(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public CustomerController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
