@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 
 function loadList() {
-    dataTable = $('#DT_load').DataTable({
+    dataTable = $('#DT_patients').DataTable({
         "ajax": {
             "url": "/api/patient",
             "type": "GET",
