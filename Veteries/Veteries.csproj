@@ -21,10 +21,8 @@
 
 
   <ItemGroup>
-    <Folder Include="Pages\Admin\Customers\" />
     <Folder Include="Pages\Admin\Vets\" />
     <Folder Include="Pages\Customer\Home\" />
-    <Folder Include="Pages\Customers\" />
     <Folder Include="Pages\Vet\" />
     <ProjectReference Include="..\Veteries.DataAccess\Veteries.DataAccess.csproj" />
     <ProjectReference Include="..\Veteries.Models\Veteries.Models.csproj" />
