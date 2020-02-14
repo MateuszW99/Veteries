@@ -21,7 +21,7 @@ namespace Veteries.DataAccess.Data.Repository
             objFromDb.Age = patient.Age;
             objFromDb.SpeciesId = patient.SpeciesId;
             //objFromDb.OwnerId = patient.OwnerId;
-
+            
             _db.SaveChanges();
         }
 
