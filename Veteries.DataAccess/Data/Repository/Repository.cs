@@ -38,6 +38,7 @@ namespace Veteries.DataAccess.Data.Repository
             }
 
             // includeProperties are separated with commas
+            // i.e. GetFirstOrDefault(null, null, "Property1,Property2)
             if (includeProperties != null)
             {
                 foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -58,7 +59,6 @@ namespace Veteries.DataAccess.Data.Repository
                 query = query.Where(filter);
             }
 
-            // includeProperties are separated with commas
             if (includeProperties != null)
             {
                 foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
