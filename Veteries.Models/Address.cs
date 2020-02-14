@@ -19,11 +19,5 @@ namespace Veteries.Models
         [Required, Display(Name = "Zip code")]
         [RegularExpression(@"\d{2}-?\d{3,4}")]
         public string ZipCode { get; set; }
-
-        [Display(Name = "Veterinarian")]
-        public int VetId { get; set; }
-
-        [ForeignKey("VetId")]
-        public virtual Veterinarian Veterinarian { get; set; }
     }
 }
