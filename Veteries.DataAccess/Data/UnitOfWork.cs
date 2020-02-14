@@ -18,6 +18,8 @@ namespace Veteries.DataAccess.Data
         public ISpeciesRepository Species { get; private set; }
         public IPatientRepository Patient { get; private set; }
         public ICustomerRepository Customer { get; private set; }
+        public IAddressRepository Address { get; private set; }
+        public IVeterinarianRepository Veterinarian { get; private set; }
 
         public void Dispose()
         {
