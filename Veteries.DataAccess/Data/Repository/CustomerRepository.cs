@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
 
@@ -13,9 +11,17 @@ namespace Veteries.DataAccess.Data.Repository
         {
             _db = db;
         }
+
         public void Update(Person customer)
         {
-            throw new NotImplementedException();
+            var objFromDb = _db.Person.FirstOrDefault(s => s.Id == customer.Id);
+
+            objFromDb.FirstName = customer.FirstName;
+            objFromDb.LastName = customer.LastName;
+            objFromDb.PhoneNumber = customer.PhoneNumber;
+            objFromDb.EmailAddress = customer.EmailAddress;
+
+            _db.SaveChanges();
         }
     }
 }

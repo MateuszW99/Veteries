@@ -15,5 +15,6 @@ namespace Veteries.DataAccess
 
         public DbSet<Species> Species { get; set; }
         public DbSet<Patient> Patient { get; set; }
+        public DbSet<Person> Person { get; set; }
     }
 }
