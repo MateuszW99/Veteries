@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Veteries.Models.Interfaces;
 
 namespace Veteries.Models
@@ -27,10 +25,12 @@ namespace Veteries.Models
         public string OfficeName { get; set; }
 
         [Required]
-        public string Address { get; set; }
-
-        [Required]
         [RegularExpression(@"\d{2,4}-\d{2,4}")]
         public string PaymentRange { get; set; }
+
+        public int AddressId { get; set; }
+
+        [ForeignKey("AddressId")]
+        public virtual Address Address { get; set; }
     }
 }
