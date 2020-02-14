@@ -4,7 +4,7 @@ using Veteries.Models.Interfaces;
 
 namespace Veteries.Models
 {
-    public class Veterinarian : IVeterinarian, IPerson
+    public class Veterinarian : IVeterinarian
     {
         [Required]
         [StringLength(15, MinimumLength = 2)]
@@ -28,6 +28,7 @@ namespace Veteries.Models
         [RegularExpression(@"\d{2,4}-\d{2,4}")]
         public string PaymentRange { get; set; }
 
+        [Display(Name = "Address")]
         public int AddressId { get; set; }
 
         [ForeignKey("AddressId")]
