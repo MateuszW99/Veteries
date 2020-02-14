@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Veteries.Models.Interfaces
+﻿namespace Veteries.Models.Interfaces
 {
     public interface IVeterinarian : IPerson
     {
