@@ -10,8 +10,8 @@ using Veteries.DataAccess;
 namespace Veteries.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200214180018_AddVeterinarianAndAddressMigration")]
-    partial class AddVeterinarianAndAddressMigration
+    [Migration("20200217195752_AddVeterinarianAndAddressMigrationFix")]
+    partial class AddVeterinarianAndAddressMigrationFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
