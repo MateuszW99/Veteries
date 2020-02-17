@@ -13,6 +13,8 @@ namespace Veteries.DataAccess.Data
             Species = new SpeciesRepository(_db);
             Patient = new PatientRepository(_db);
             Customer = new CustomerRepository(_db);
+            Address = new AddressRepository(_db);
+            Veterinarian = new VeterinarianRepository(_db);
         }
 
         public ISpeciesRepository Species { get; private set; }
