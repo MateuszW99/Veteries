@@ -1,47 +1,67 @@
 ﻿@page
 @model Veteries.Pages.Admin.Vets.IndexModel
 
-    <div class="border backgroundWhite container">
-        <div class="row">
-            <div class="col-6">
-                <h2 class="text-secondary">Veterinarians</h2>
-            </div>
-            <div class="col-6 text-right">
-                <a asp-page="Upsert" class="btn btn-secondary"><i class="fas fa-plus"></i> &nbsp; Add new</a>
-            </div>
+<div class="border backgroundWhite container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-secondary">Veterinarians</h2>
         </div>
-        <br /><br />
-        <table class="table table-striped table-bordered" style="width:100%">
-            <thead>
+        <div class="col-6 text-right">
+            <a asp-page="Upsert" class="btn btn-secondary"><i class="fas fa-plus"></i> &nbsp; Add new</a>
+        </div>
+    </div>
+    <br /><br />
+    <table class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.OfficeSort">
+                        @Html.DisplayNameFor(model => model.Veterinarians[0].OfficeName)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.FNameSort">
+                        @Html.DisplayNameFor(model => model.Veterinarians[0].FirstName)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.LNameSort">
+                        @Html.DisplayNameFor(model => model.Veterinarians[0].LastName)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.EmailSort">
+                        @Html.DisplayNameFor(model => model.Veterinarians[0].EmailAddress)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.PhoneSort">
+                        @Html.DisplayNameFor(model => model.Veterinarians[0].PhoneNumber)
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Veterinarians.Count == 0)
+            {
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Veterinarians[0].OfficeName)</th>
-                    <th>@Html.DisplayNameFor(model => model.Veterinarians[0].FirstName)</th>
-                    <th>@Html.DisplayNameFor(model => model.Veterinarians[0].LastName)</th>
-                    <th>@Html.DisplayNameFor(model => model.Veterinarians[0].EmailAddress)</th>
-                    <th>@Html.DisplayNameFor(model => model.Veterinarians[0].PhoneNumber)</th>
+                    <td colspan="5" class="text-center">No data found.</td>
                 </tr>
-            </thead>
-            <tbody>
-                @if (Model.Veterinarians.Count == 0)
+
+            }
+            else
+            {
+                foreach (var vet in Model.Veterinarians)
                 {
                     <tr>
-                        <td colspan="5" class="text-center">No data found.</td>
+                        <td>@Html.DisplayFor(vetItem => vet.OfficeName)</td>
+                        <td>@Html.DisplayFor(vetItem => vet.FirstName)</td>
+                        <td>@Html.DisplayFor(vetItem => vet.LastName)</td>
+                        <td>@Html.DisplayFor(vetItem => vet.EmailAddress)</td>
+                        <td>@Html.DisplayFor(vetItem => vet.PhoneNumber)</td>
                     </tr>
-
                 }
-                else
-                {
-                    foreach (var vet in Model.Veterinarians)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(vetItem => vet.OfficeName)</td>
-                            <td>@Html.DisplayFor(vetItem => vet.FirstName)</td>
-                            <td>@Html.DisplayFor(vetItem => vet.LastName)</td>
-                            <td>@Html.DisplayFor(vetItem => vet.EmailAddress)</td>
-                            <td>@Html.DisplayFor(vetItem => vet.PhoneNumber)</td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>

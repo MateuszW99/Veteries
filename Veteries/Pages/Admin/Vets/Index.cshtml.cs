@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Veteries.Utility.UtilityModels;
+using System;
 
 namespace Veteries.Pages.Admin.Vets
 {
@@ -18,10 +18,25 @@ namespace Veteries.Pages.Admin.Vets
             _unitOfWork = unitOfWork;
         }
 
+        public string OfficeSort { get; set; }
+        public string FNameSort { get; set; }
+        public string LNameSort { get; set; }
+        public string EmailSort { get; set; }
+        public string PhoneSort { get; set; }
 
-        public void OnGet()
+        public void OnGet(string sortOrder)
         {
-            Veterinarians = (List<Veterinarian>)_unitOfWork.Veterinarian.GetAll();
+            Veterinarians = _unitOfWork.Veterinarian.GetAll().ToList();
+
+
+            OfficeSort = String.IsNullOrEmpty(sortOrder) ? "office_desc" : "";
+            FNameSort = sortOrder == "FNameSort" ? "fName_desc" : "FNameSort";
+            LNameSort = sortOrder == "LNameSort" ? "lName_desc" : "LNameSort";
+            EmailSort = sortOrder == "EmailSort" ? "email_desc" : "EmailSort";
+            PhoneSort = sortOrder == "PhoneSort" ? "phone_desc" : "PhoneSort";
+
+            Veterinarians = SortTable.SortVets(sortOrder, Veterinarians);
+
 
         }
     }
