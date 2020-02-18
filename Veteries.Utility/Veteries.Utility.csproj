@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Veteries.Models\Veteries.Models.csproj" />
+  </ItemGroup>
+
 </Project>
