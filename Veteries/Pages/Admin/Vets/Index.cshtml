@@ -39,13 +39,14 @@
                         @Html.DisplayNameFor(model => model.Veterinarians[0].PhoneNumber)
                     </a>
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @if (Model.Veterinarians.Count == 0)
             {
                 <tr>
-                    <td colspan="5" class="text-center">No data found.</td>
+                    <td colspan="6" class="text-center">No data found.</td>
                 </tr>
 
             }
@@ -59,9 +60,24 @@
                         <td>@Html.DisplayFor(vetItem => vet.LastName)</td>
                         <td>@Html.DisplayFor(vetItem => vet.EmailAddress)</td>
                         <td>@Html.DisplayFor(vetItem => vet.PhoneNumber)</td>
+                        <td>
+                            <div class="text-center">
+                                <a asp-page="Upsert" asp-route-id="@vet.Id" class="btn btn-success text-white" style="cursor:pointer; width:100px">
+                                    <i class="far fa-edit"></i> Edit
+                                </a>
+                                <button class="btn btn-danger text-white" style="cursor:pointer; width:100px" onclick="Delete(@vet.Id)">
+                                    <i class="far fa-trash-alt"></i> Delete
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
 </div>
+
+@section Scripts
+{
+    <script src="~/js/vets.js"></script>
+}

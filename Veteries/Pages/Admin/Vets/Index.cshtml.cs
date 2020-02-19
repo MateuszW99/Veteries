@@ -5,6 +5,7 @@ using Veteries.Models;
 using System.Linq;
 using Veteries.Utility.UtilityModels;
 using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Veteries.Pages.Admin.Vets
 {
@@ -28,7 +29,6 @@ namespace Veteries.Pages.Admin.Vets
         {
             Veterinarians = _unitOfWork.Veterinarian.GetAll().ToList();
 
-
             OfficeSort = String.IsNullOrEmpty(sortOrder) ? "office_desc" : "";
             FNameSort = sortOrder == "FNameSort" ? "fName_desc" : "FNameSort";
             LNameSort = sortOrder == "LNameSort" ? "lName_desc" : "LNameSort";
@@ -36,8 +36,21 @@ namespace Veteries.Pages.Admin.Vets
             PhoneSort = sortOrder == "PhoneSort" ? "phone_desc" : "PhoneSort";
 
             Veterinarians = SortTable.SortVets(sortOrder, Veterinarians);
+        }
 
+        public IActionResult OnGetDelete(int id)
+        {
+            var objFromDb = _unitOfWork.Veterinarian.GetFirstOrDefault(s => s.Id == id);
 
+            if (objFromDb == null)
+            {
+                return new JsonResult(new { success = false, message = "Error while deleting."});
+            }
+
+            _unitOfWork.Veterinarian.Remove(objFromDb);
+            _unitOfWork.Save();
+
+            return new JsonResult(new { success = true, message = "Deleted succesfully." });
         }
     }
 }

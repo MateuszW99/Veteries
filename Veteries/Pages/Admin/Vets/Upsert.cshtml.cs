@@ -61,5 +61,7 @@ namespace Veteries.Pages.Admin.Vets
             _unitOfWork.Save();
             return RedirectToPage("./Index");
         }
+
+
     }
 }
