@@ -13,6 +13,7 @@ namespace Veteries.Pages.Admin.Vets
     {
         private readonly IUnitOfWork _unitOfWork;
         public List<Veterinarian> Veterinarians { get; set; }
+        //private List<Address> Addresses { get; set; }
 
         public IndexModel(IUnitOfWork unitOfWork)
         {
@@ -40,14 +41,16 @@ namespace Veteries.Pages.Admin.Vets
 
         public IActionResult OnGetDelete(int id)
         {
-            var objFromDb = _unitOfWork.Veterinarian.GetFirstOrDefault(s => s.Id == id);
+            var addressFromDb = _unitOfWork.Address.GetFirstOrDefault(s => s.Id == id);
+            var vetFromDb = _unitOfWork.Veterinarian.GetFirstOrDefault(s => s.Id == id);
 
-            if (objFromDb == null)
+            if (vetFromDb == null || addressFromDb == null)
             {
                 return new JsonResult(new { success = false, message = "Error while deleting."});
             }
 
-            _unitOfWork.Veterinarian.Remove(objFromDb);
+            //_unitOfWork.Veterinarian.Remove(vetFromDb);
+            _unitOfWork.Address.Remove(addressFromDb);
             _unitOfWork.Save();
 
             return new JsonResult(new { success = true, message = "Deleted succesfully." });
