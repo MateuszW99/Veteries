@@ -23,13 +23,14 @@ namespace Veteries.Pages.Admin.Vets
 
         public IActionResult OnGet(int? id)
         {
+            AddressObj = new Models.Address();
             VeterinarianObj = new Models.Veterinarian();
             if (id != null)
             {
                 AddressObj = _unitOfWork.Address.GetFirstOrDefault(u => u.Id == id);
                 VeterinarianObj = _unitOfWork.Veterinarian.GetFirstOrDefault(u => u.Id == id);
             }
-            if (VeterinarianObj == null)
+            if (VeterinarianObj == null || AddressObj == null)
             {
                 return Page();
             }
