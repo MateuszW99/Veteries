@@ -14,13 +14,6 @@ namespace Veteries.Pages.Admin.Vets
         private readonly IUnitOfWork _unitOfWork;
         public List<Veterinarian> Veterinarians { get; set; }
 
-        // Sorting variables
-        public string OfficeSort { get; set; }
-        public string FNameSort { get; set; }
-        public string LNameSort { get; set; }
-        public string EmailSort { get; set; }
-        public string PhoneSort { get; set; }
-
         // Pagination Variables
         public int PageIndex { get; set; }
         public int TotalPages { get; set; }
