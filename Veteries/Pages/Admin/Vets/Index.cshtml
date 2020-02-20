@@ -15,27 +15,27 @@
         <thead>
             <tr>
                 <th>
-                    <a asp-page="./Index" asp-route-sortOrder="@Model.OfficeSort">
+                    <a asp-page="Index" asp-route-sortOrder="@ViewData["OfficeSort"]">
                         @Html.DisplayNameFor(model => model.Veterinarians[0].OfficeName)
                     </a>
                 </th>
                 <th>
-                    <a asp-page="./Index" asp-route-sortOrder="@Model.FNameSort">
+                    <a asp-page="Index" asp-route-sortOrder="@ViewData["FNameSort"]">
                         @Html.DisplayNameFor(model => model.Veterinarians[0].FirstName)
                     </a>
                 </th>
                 <th>
-                    <a asp-page="./Index" asp-route-sortOrder="@Model.LNameSort">
+                    <a asp-page="Index" asp-route-sortOrder="@ViewData["LNameSort"]">
                         @Html.DisplayNameFor(model => model.Veterinarians[0].LastName)
                     </a>
                 </th>
                 <th>
-                    <a asp-page="./Index" asp-route-sortOrder="@Model.EmailSort">
+                    <a asp-page="Index" asp-route-sortOrder="@ViewData["EmailSort"]">
                         @Html.DisplayNameFor(model => model.Veterinarians[0].EmailAddress)
                     </a>
                 </th>
                 <th>
-                    <a asp-page="./Index" asp-route-sortOrder="@Model.PhoneSort">
+                    <a asp-page="Index" asp-route-sortOrder="@ViewData["PhoneSort"]">
                         @Html.DisplayNameFor(model => model.Veterinarians[0].PhoneNumber)
                     </a>
                 </th>
@@ -75,6 +75,18 @@
             }
         </tbody>
     </table>
+
+    @{ 
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <a asp-page="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-secondary @prevDisabled">
+        Previous
+    </a>
+    <a asp-page="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-secondary @nextDisabled">
+        Next
+    </a>
+
 </div>
 
 @section Scripts

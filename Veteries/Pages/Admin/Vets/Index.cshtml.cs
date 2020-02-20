@@ -14,28 +14,44 @@ namespace Veteries.Pages.Admin.Vets
         private readonly IUnitOfWork _unitOfWork;
         public List<Veterinarian> Veterinarians { get; set; }
 
-        public IndexModel(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
+        // Sorting variables
         public string OfficeSort { get; set; }
         public string FNameSort { get; set; }
         public string LNameSort { get; set; }
         public string EmailSort { get; set; }
         public string PhoneSort { get; set; }
 
-        public void OnGet(string sortOrder)
+        // Pagination Variables
+        public int PageIndex { get; set; }
+        public int TotalPages { get; set; }
+        private const int PageSize = 5;
+        public bool HasPreviousPage {  get => PageIndex > 1; }
+        public bool HasNextPage { get => PageIndex < TotalPages; }
+
+        public IndexModel(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
+
+        }
+
+        public void OnGet(string sortOrder, int? pageNumber)
+        {
+            // Get the data from DB
             Veterinarians = _unitOfWork.Veterinarian.GetAll().ToList();
 
-            OfficeSort = String.IsNullOrEmpty(sortOrder) ? "office_desc" : "";
-            FNameSort = sortOrder == "FNameSort" ? "fName_desc" : "FNameSort";
-            LNameSort = sortOrder == "LNameSort" ? "lName_desc" : "LNameSort";
-            EmailSort = sortOrder == "EmailSort" ? "email_desc" : "EmailSort";
-            PhoneSort = sortOrder == "PhoneSort" ? "phone_desc" : "PhoneSort";
-
+            // Sort the data
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["OfficeSort"] = String.IsNullOrEmpty(sortOrder) ? "office_desc" : "";
+            ViewData["FNameSort"] = sortOrder == "FNameSort" ? "fName_desc" : "FNameSort";
+            ViewData["LNameSort"] = sortOrder == "LNameSort" ? "lName_desc" : "LNameSort";
+            ViewData["EmailSort"] = sortOrder == "EmailSort" ? "email_desc" : "EmailSort";
+            ViewData["PhoneSort"] = sortOrder == "PhoneSort" ? "phone_desc" : "PhoneSort";
             Veterinarians = SortTable.SortVets(sortOrder, Veterinarians);
+
+            // Paginate the data
+            PageIndex = pageNumber ?? 1;
+            TotalPages = (int)Math.Ceiling(Veterinarians.Count() / (double)PageSize);
+            Veterinarians = Veterinarians.CreatePagination(PageIndex, PageSize);
         }
 
         // Only the address can be removed
@@ -46,7 +62,7 @@ namespace Veteries.Pages.Admin.Vets
 
             if (addressFromDb == null)
             {
-                return new JsonResult(new { success = false, message = "Error while deleting."});
+                return new JsonResult(new { success = false, message = "Error while deleting." });
             }
 
             _unitOfWork.Address.Remove(addressFromDb);
