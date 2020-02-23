@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Veteries.DataAccess;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.DataAccess.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Veteries.Utility.Helper;
 
 namespace Veteries
 {
@@ -29,6 +31,8 @@ namespace Veteries
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             // Dependencies
             services.AddScoped<IUnitOfWork, UnitOfWork>();
