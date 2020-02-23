@@ -6,6 +6,7 @@ using System.Linq;
 using Veteries.Utility.UtilityModels;
 using System;
 using Microsoft.AspNetCore.Mvc;
+using Veteries.Utility;
 
 namespace Veteries.Pages.Admin.Vets
 {
@@ -13,18 +14,12 @@ namespace Veteries.Pages.Admin.Vets
     {
         private readonly IUnitOfWork _unitOfWork;
         public List<Veterinarian> Veterinarians { get; set; }
-
-        // Pagination Variables
-        public int PageIndex { get; set; }
-        public int TotalPages { get; set; }
-        private const int PageSize = 5;
-        public bool HasPreviousPage {  get => PageIndex > 1; }
-        public bool HasNextPage { get => PageIndex < TotalPages; }
+        public Pagination Pagination { get; set; }
 
         public IndexModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-
+            Pagination = new Pagination(10); // 5 is the max number of elements displayed on each page
         }
 
         public void OnGet(string sortOrder, int? pageNumber)
@@ -42,9 +37,9 @@ namespace Veteries.Pages.Admin.Vets
             Veterinarians = Veterinarians.SortVets(sortOrder);
 
             // Paginate the data
-            PageIndex = pageNumber ?? 1;
-            TotalPages = (int)Math.Ceiling(Veterinarians.Count() / (double)PageSize);
-            Veterinarians = Veterinarians.CreatePagination(PageIndex, PageSize);
+            Pagination.PageIndex = pageNumber ?? 1;
+            Pagination.TotalPages = (int)Math.Ceiling(Veterinarians.Count() / (double)Pagination.PageSize);
+            Veterinarians = Veterinarians.CreatePagination(Pagination.PageIndex, Pagination.PageSize);
         }
 
         // Only the address can be removed

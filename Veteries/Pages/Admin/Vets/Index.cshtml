@@ -77,13 +77,13 @@
     </table>
 
     @{ 
-        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        var prevDisabled = !Model.Pagination.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.Pagination.HasNextPage ? "disabled" : "";
     }
-    <a asp-page="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-secondary @prevDisabled">
+    <a asp-page="Index" asp-route-pageNumber="@(Model.Pagination.PageIndex - 1)" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-secondary @prevDisabled">
         Previous
     </a>
-    <a asp-page="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-secondary @nextDisabled">
+    <a asp-page="Index" asp-route-pageNumber="@(Model.Pagination.PageIndex + 1)" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-secondary @nextDisabled">
         Next
     </a>
 
