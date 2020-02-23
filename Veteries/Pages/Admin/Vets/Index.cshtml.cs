@@ -39,7 +39,7 @@ namespace Veteries.Pages.Admin.Vets
             ViewData["LNameSort"] = sortOrder == "LNameSort" ? "lName_desc" : "LNameSort";
             ViewData["EmailSort"] = sortOrder == "EmailSort" ? "email_desc" : "EmailSort";
             ViewData["PhoneSort"] = sortOrder == "PhoneSort" ? "phone_desc" : "PhoneSort";
-            Veterinarians = SortTable.SortVets(sortOrder, Veterinarians);
+            Veterinarians = Veterinarians.SortVets(sortOrder);
 
             // Paginate the data
             PageIndex = pageNumber ?? 1;

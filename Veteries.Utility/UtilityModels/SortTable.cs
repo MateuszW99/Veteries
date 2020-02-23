@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Veteries.Models;
-using Veteries.Utility.UtilityModels.Interfaces;
 
 namespace Veteries.Utility.UtilityModels
 {
     public static class SortTable
     {
-        public static List<Veterinarian> SortVets(string sortOrder, List<Veterinarian> veterinarians)
+        public static List<Veterinarian> SortVets(this List<Veterinarian> veterinarians, string sortOrder)
         {
             switch (sortOrder)
             {
