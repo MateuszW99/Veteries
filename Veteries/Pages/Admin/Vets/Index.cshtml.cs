@@ -19,7 +19,7 @@ namespace Veteries.Pages.Admin.Vets
         public IndexModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            Pagination = new Pagination(10); // 5 is the max number of elements displayed on each page
+            Pagination = new Pagination(10); // parameter is the max number of elements displayed on each page
         }
 
         public void OnGet(string sortOrder, int? pageNumber)
