@@ -1,54 +1,53 @@
 ﻿@page
 @model RegisterModel
 
-<form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
+
     <div class="py-4 my-4">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="row form-group">
                 <div class="col-8 offset-2">
                     <div class="card">
 
                         <div class="card-body px-lg-5 pt-4">
-                            <h3 class="col-12 text-success text-center py-4">Sing Up</h3>
-                            <hr />
-                            <div class="form-row py-2">
-                                <div class="col">
-                                    <div>
-                                        <input type="text" asp-for="Input.FirstName" placeholder="First Name" class="form-control" />
-                                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                            <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
+                                <h3 class="col-12 text-black text-center py-4">Sing Up</h3>
+                                <hr />
+                                <div class="form-row py-2">
+                                    <div class="col">
+                                        <div>
+                                            <input type="text" asp-for="Input.FirstName" placeholder="First Name" class="form-control" />
+                                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <input type="text" asp-for="Input.LastName" placeholder="Last Name" class="form-control" />
+                                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div>
-                                    <input type="text" asp-for="Input.LastName" placeholder="Last Name" class="form-control" />
-                                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                <div class="py-2">
+                                    <input type="email" asp-for="Input.Email" placeholder="Email" class="form-control" />
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
                                 </div>
-                            </div>
-                            <div class="py-2">
-                                <input type="email" asp-for="Input.Email" placeholder="Email" class="form-control" />
-                                <span asp-validation-for="Input.Email" class="text-danger"></span>
-                            </div>
-                            <div class="py-2">
-                                <input type="text" asp-for="Input.PhoneNumber" placeholder="Phone Number" class="form-control" />
-                                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                            </div>
-                            <div class="py-2">
-                                <input type="password" asp-for="Input.Password" placeholder="Password" class="form-control" />
-                                <span asp-validation-for="Input.Password" class="text-danger"></span>
-                            </div>
-                            <div class="py-2">
-                                <input type="password" asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control" />
-                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                            </div>
+                                <div class="py-2">
+                                    <input type="text" asp-for="Input.PhoneNumber" placeholder="Phone Number" class="form-control" />
+                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="py-2">
+                                    <input type="password" asp-for="Input.Password" placeholder="Password" class="form-control" />
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                                <div class="py-2">
+                                    <input type="password" asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+                                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
     </div>
-</form>
 
 
 
