@@ -16,16 +16,25 @@ function loadList() {
             { "data": "email", "width": "25%" },
             { "data": "phoneNumber", "width": "25%" },
             {
-                "data": "id",
+                "data": {id: "id", lockoutEnd: "lockoutEnd"},
                 "render": function (data) {
-                    return ` <div class="text-center">
-                                <a href="/Admin/species/upsert?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
-                                    <i class="far fa-edit"></i> Edit
-                                </a>
-                                <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;" onclick=Delete('/api/species/'+${data})>
-                                    <i class="far fa-trash-alt"></i> Delete
-                                </a>
-                            </div>`;
+                    var today = new Date.getTime();
+                    var lockout = new Date(data.lockoutEnd).getTime();
+                    if (lockout > today) {
+                        // user is locked
+                        return `<div class="text-center">
+                                    <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;" onclick=LockUnlock('${data.id}')>
+                                        <i class="far fa-trash-alt"></i> Unlock
+                                    </a>
+                                </div>`;
+                    }
+                    else {
+                        return `<div class="text-center">
+                                    <a class="btn btn-success text-white" style="cursor:pointer; width:100px;" onclick=LockUnlock('${data.id}')>
+                                        <i class="far fa-trash-alt"></i> Lock
+                                    </a>
+                                </div>`;
+                    }
                 }, "width": "30%"
             }
         ],
@@ -33,32 +42,5 @@ function loadList() {
             "emptyTable": "No data found."
         },
         "width": "100%"
-    });
-}
-
-
-function Delete(url) {
-    swal({
-        title: "Are you sure you want to Delete?",
-        text: "You will not be able to restore the data!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
-    }).then((willDelete) => {
-        if (willDelete) {
-            $.ajax({
-                type: 'DELETE',
-                url: url,
-                success: function (data) {
-                    if (data.success) {
-                        toastr.success(data.message);
-                        dataTable.ajax.reload();
-                    }
-                    else {
-                        toastr.error(data.message);
-                    }
-                }
-            });
-        }
     });
 }
