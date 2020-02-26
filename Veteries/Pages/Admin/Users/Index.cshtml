@@ -1,0 +1,29 @@
+﻿@page
+
+
+<div class="border backgroundWhite container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-secondary">Users list</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="/Account/Register" class="btn btn-secondary"><i class="fas fa-plus"></i> &nbsp; Register New</a>
+        </div>
+    </div>
+    <br /><br />
+    <table id="DT_users" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/users.js"></script>
+}
