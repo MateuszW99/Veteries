@@ -5,6 +5,7 @@ namespace Veteries.Utility.Helper
     public class StaticDetails
     {
         public const int MaxPageSize = 10;
+        public const int LockTime = 100;
 
         [Display(Name = "Admin")]
         public const string AdminRole = "Admin";
