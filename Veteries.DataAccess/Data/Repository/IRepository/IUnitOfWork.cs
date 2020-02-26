@@ -9,6 +9,7 @@ namespace Veteries.DataAccess.Data.Repository.IRepository
         ICustomerRepository Customer { get; }
         IAddressRepository Address { get; }
         IVeterinarianRepository Veterinarian { get; }
+        IApplicationUserRepository ApplicationUser { get; }
         void Save();
     }
 }
