@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Veteries.DataAccess.Data.Repository.IRepository;
-using Veteries.Utility.Helper;
 
 namespace Veteries.Controllers
 {
