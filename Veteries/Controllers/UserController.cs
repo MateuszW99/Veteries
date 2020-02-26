@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Veteries.DataAccess.Data.Repository.IRepository;
+using Veteries.Utility.Helper;
 
 namespace Veteries.Controllers
 {
@@ -19,6 +20,26 @@ namespace Veteries.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Json(new { data = _unitOfWork.ApplicationUser.GetAll() });
+        }
+
+        [HttpPost]
+        public IActionResult LockUnlock([FromBody]string id)
+        {
+            var objFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(s => s.Id == id);
+            if (objFromDb == null)
+            {
+                var alertMessage = objFromDb.LockoutEnd > DateTime.Now ? "Error while unlocking." : "Error while locking.";
+                return Json(new { success = false, message = alertMessage });
+            }
+
+            _unitOfWork.ApplicationUser.LockUnlock(objFromDb);
+            _unitOfWork.Save();
+            var mes = objFromDb.LockoutEnd <= DateTime.Now ? "Locking" : "Unlocking";
+            return Json(new { success = true, message = $"{mes} successful."});
+        }
     }
 }
