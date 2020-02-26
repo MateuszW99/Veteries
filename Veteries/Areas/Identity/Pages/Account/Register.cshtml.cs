@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Veteries.Models;
+using Veteries.Utility.Helper;
 
 namespace Veteries.Areas.Identity.Pages.Account
 {
@@ -86,10 +88,46 @@ namespace Veteries.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                string role = Request.Form["rdUserRole"].ToString();
+
+
+                var user = new ApplicationUser {
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    FirstName =  Input.FirstName,
+                    LastName = Input.LastName,
+                    PhoneNumber = Input.PhoneNumber
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                if(!await _roleManager.RoleExistsAsync(StaticDetails.MaintenanceRole))
+                {
+                    _roleManager.CreateAsync(new IdentityRole(StaticDetails.MaintenanceRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(StaticDetails.AdminRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(StaticDetails.OfficeOwnerRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(StaticDetails.CustomerRole)).GetAwaiter().GetResult();
+                }
+
                 if (result.Succeeded)
                 {
+                    if (role == StaticDetails.MaintenanceRole)
+                    {
+                        await _userManager.AddToRoleAsync(user, StaticDetails.MaintenanceRole);
+                    }
+                    else
+                    {
+                        if (role == StaticDetails.OfficeOwnerRole)
+                        {
+                            await _userManager.AddToRoleAsync(user, StaticDetails.OfficeOwnerRole);
+                        }
+                        else
+                        {
+                            await _userManager.AddToRoleAsync(user, StaticDetails.CustomerRole);
+                        }
+                    }
+
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
