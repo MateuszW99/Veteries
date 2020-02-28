@@ -18,8 +18,10 @@ function loadList() {
             {
                 "data": {id: "id", lockoutEnd: "lockoutEnd"},
                 "render": function (data) {
-                    var today = new Date.getTime();
-                    var lockout = new Date(data.lockoutEnd).getTime();
+                    var today = new Date;
+                    today = today.getDate();
+                    var lockout = new Date(data.lockoutEnd);
+                    lockout = lockout.getDate();
                     if (lockout > today) {
                         // user is locked
                         return `<div class="text-center">
