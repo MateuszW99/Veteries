@@ -12,7 +12,7 @@ function loadList() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "fullNane", "width": "25%" },
+            { "data": "fullName", "width": "25%" },
             { "data": "email", "width": "25%" },
             { "data": "phoneNumber", "width": "25%" },
             {
@@ -42,5 +42,23 @@ function loadList() {
             "emptyTable": "No data found."
         },
         "width": "100%"
+    });
+}
+
+function LockUnlock(id) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/user',
+        data: JSON.stringify(id),
+        contentType: 'application/json',
+        success: function (data) {
+            if (data.success) {
+                toastr.success(data.message);
+                dataTable.reload();
+            }
+            else {
+                toastr.error(data.message);
+            }
+        }
     });
 }
