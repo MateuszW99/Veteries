@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
 
@@ -13,6 +14,15 @@ namespace Veteries.DataAccess.Data.Repository
         public VeterinarianRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public IEnumerable<SelectListItem> GetVetListForDropdown()
+        {
+            return _db.Veterinarian.Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+            {
+                Text = i.OfficeName,
+                Value = i.Id.ToString()
+            });
         }
 
         public void Update(Veterinarian veterinarian)

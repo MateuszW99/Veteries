@@ -14,7 +14,7 @@ namespace Veteries.DataAccess.Data.Repository
             _db = db;
         }
 
-        public IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> GetSpeciesListForDropDown()
+        public IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> GetSpeciesListForDropdown()
         {
             return _db.Species.Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
             {

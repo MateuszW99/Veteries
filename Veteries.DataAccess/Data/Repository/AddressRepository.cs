@@ -1,6 +1,8 @@
 ﻿using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace Veteries.DataAccess.Data.Repository
 {
@@ -11,6 +13,15 @@ namespace Veteries.DataAccess.Data.Repository
         public AddressRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public IEnumerable<SelectListItem> GetCityListForDropdown()
+        {
+            return _db.Address.Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+            {
+                Text = i.City,
+                Value = i.Id.ToString()
+            });
         }
 
         public void Update(Address address)
