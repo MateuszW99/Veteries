@@ -18,7 +18,8 @@ namespace Veteries.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(new { data = _unitOfWork.ApplicationUser.GetAll() });
+            
+            return Json(new { data = _unitOfWork.ApplicationUser.GetAll()});
         }
 
         [HttpPost]
@@ -30,7 +31,7 @@ namespace Veteries.Controllers
                 var alertMessage = objFromDb.LockoutEnd > DateTime.Now ? "Error while unlocking." : "Error while locking.";
                 return Json(new { success = false, message = alertMessage });
             }
-
+            
             _unitOfWork.ApplicationUser.LockUnlock(objFromDb);
             _unitOfWork.Save();
             var mes = objFromDb.LockoutEnd <= DateTime.Now ? "Locking" : "Unlocking";
