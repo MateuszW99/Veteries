@@ -8,18 +8,27 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Veteries.Utility;
 using Veteries.Utility.Helper;
+using Microsoft.AspNetCore.Identity;
 
 namespace Veteries.Pages.Admin.Vets
 {
     public class IndexModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<ApplicationUser> userManager;
+
         public List<Veterinarian> Veterinarians { get; set; }
         public Pagination Pagination { get; set; }
+        
 
-        public IndexModel(IUnitOfWork unitOfWork)
+        public IndexModel(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
+            this.userManager = userManager;
+            if (this.userManager != null)
+            {
+                Console.WriteLine("s");
+            }
             Pagination = new Pagination(StaticDetails.MaxPageSize); // parameter is the max number of elements displayed on each page
         }
 

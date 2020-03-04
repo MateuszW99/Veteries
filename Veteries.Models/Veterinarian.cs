@@ -6,6 +6,7 @@ namespace Veteries.Models
 {
     public class Veterinarian : IVeterinarian
     {
+        // Personal data variables
         [Key]
         public int Id { get; set; }
 
@@ -32,6 +33,7 @@ namespace Veteries.Models
         [RegularExpression(@"\d{2,4}-\d{2,4}")]
         public string PaymentRange { get; set; }
 
+        // Address variables
         [Display(Name = "Address")]
         public int AddressId { get; set; }
 

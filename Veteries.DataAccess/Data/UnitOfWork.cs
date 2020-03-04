@@ -24,6 +24,7 @@ namespace Veteries.DataAccess.Data
         public IAddressRepository Address { get; private set; }
         public IVeterinarianRepository Veterinarian { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
+
         public void Dispose()
         {
             _db.Dispose();
