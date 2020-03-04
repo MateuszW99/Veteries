@@ -1,10 +1,25 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form method="post" asp-action="">
+    <div class="col-6">
+        @Html.DropDownListFor(m => m.DropdownListModel.CityID,
+                                     Model.DropdownListModel.CityList,
+                                     "Select city..",
+                                     new { @class = "form-control" })
+        <span class="text-danger" asp-validation-for="DropdownListModel.CityID"></span>
+    </div>
+    <br />
+    <div class="col-6">
+        @Html.DropDownListFor(m => m.DropdownListModel.SpeciesID,
+                                     Model.DropdownListModel.SpeciesList,
+                                     "or select species of your pet",
+                                     new { @class = "form-control" })
+        <span class="text-danger" asp-validation-for="DropdownListModel.SpeciesID"></span>
+    </div>
+
+
+</form>
+
+
+

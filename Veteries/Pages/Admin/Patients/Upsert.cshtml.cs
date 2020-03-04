@@ -23,7 +23,7 @@ namespace Veteries.Pages.Admin.Patients
             PatientObj = new PatientVM
             {
                 Patient = new Patient(),
-                SpeciesList = _unitOfWork.Species.GetSpeciesListForDropDown()
+                SpeciesList = _unitOfWork.Species.GetSpeciesListForDropdown()
             };
             if (id != null)
             {
