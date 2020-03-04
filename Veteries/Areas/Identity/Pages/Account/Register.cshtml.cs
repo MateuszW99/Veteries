@@ -20,16 +20,16 @@ namespace Veteries.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
 
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager)
@@ -108,7 +108,7 @@ namespace Veteries.Areas.Identity.Pages.Account
                     _roleManager.CreateAsync(new IdentityRole(StaticDetails.OfficeOwnerRole)).GetAwaiter().GetResult();
                     _roleManager.CreateAsync(new IdentityRole(StaticDetails.CustomerRole)).GetAwaiter().GetResult();
                 }
-
+                
                 if (result.Succeeded)
                 {
                     if (role == StaticDetails.MaintenanceRole)
@@ -126,7 +126,7 @@ namespace Veteries.Areas.Identity.Pages.Account
                             await _userManager.AddToRoleAsync(user, StaticDetails.CustomerRole);
                         }
                     }
-
+                    
 
                     _logger.LogInformation("User created a new account with password.");
 
@@ -156,7 +156,7 @@ namespace Veteries.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
+            
             // If we got this far, something failed, redisplay form
             return Page();
         }

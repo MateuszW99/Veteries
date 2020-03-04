@@ -10,6 +10,8 @@ using Veteries.DataAccess.Data.Repository.IRepository;
 using Veteries.DataAccess.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Veteries.Utility.Helper;
+using Veteries.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Veteries
 {
@@ -26,23 +28,25 @@ namespace Veteries
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
+                            options.UseSqlServer(
+                                Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddSingleton<IEmailSender, EmailSender>();
+            
 
             // Dependencies
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<Microsoft.AspNetCore.Identity.UserManager<ApplicationUser>>();
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             // Use basic MVC routing
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddControllersWithViews();
-            
+
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
@@ -63,7 +67,7 @@ namespace Veteries
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseAuthentication();
             app.UseAuthorization();
 
