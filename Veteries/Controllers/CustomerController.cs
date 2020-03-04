@@ -1,5 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Veteries.DataAccess;
 using Veteries.DataAccess.Data.Repository.IRepository;
+using Veteries.Models;
+using Veteries.Utility.Helper;
 
 namespace Veteries.Controllers
 {
@@ -8,15 +16,23 @@ namespace Veteries.Controllers
     public class CustomerController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CustomerController(IUnitOfWork unitOfWork)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CustomerController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
+            _userManager = userManager;
+            if ( _userManager != null)
+            {
+                Console.WriteLine("ok");
+            }
         }
 
         [HttpGet]
         public IActionResult OnGet()
         {
-            return Json(new { data = _unitOfWork.Customer.GetAll() });
+            //return Json(new { data = _unitOfWork.Customer.GetAll() });
+            return Json(new { data = _userManager.GetUsersInRoleAsync(StaticDetails.CustomerRole).Result.ToList()});
         }
 
         [HttpDelete("{id}")]
