@@ -14,7 +14,7 @@ function loadList() {
         "columns": [
             { "data": "firstName", "width": "40%" },
             { "data": "lastName", "width": "40%" },
-            { "data": "emailAddress", "width": "40%" },
+            { "data": "email", "width": "40%" },
             { "data": "phoneNumber", "width": "20%" },
             {
                 "data": "id",
