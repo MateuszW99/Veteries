@@ -17,11 +17,12 @@ namespace Veteries.DataAccess.Data.Repository
 
         public IEnumerable<SelectListItem> GetCityListForDropdown()
         {
-            return _db.Address.Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+            var cities = _db.Address.Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
             {
                 Text = i.City,
                 Value = i.Id.ToString()
             });
+            return cities.Distinct();
         }
 
         public void Update(Address address)
