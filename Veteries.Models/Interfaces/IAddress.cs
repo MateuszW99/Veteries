@@ -1,9 +1,11 @@
-﻿namespace Veteries.Utility.UtilityModels.Interfaces
+﻿using Veteries.Models;
+
+namespace Veteries.Utility.UtilityModels.Interfaces
 {
     public interface IAddress
     {
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string ZipCode { get; set; }
+        string Street { get; set; }
+        string ZipCode { get; set; }
+        City City { get; set; }       
     }
 }

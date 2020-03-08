@@ -9,15 +9,17 @@ namespace Veteries.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [RegularExpression(@"[A-Z][a-z]+")]
-        public string City { get; set; }
+        [Display(Name = "City")]
+        public int CityID { get; set; }
 
-        [Required]
-        public string Street { get; set; }
+        [ForeignKey("CityID")]
+        public virtual City City { get; set; }
 
         [Required, Display(Name = "Zip code")]
         [RegularExpression(@"\d{2}-?\d{3,4}")]
         public string ZipCode { get; set; }
+
+        [Required]
+        public string Street { get; set;; }
     }
 }
