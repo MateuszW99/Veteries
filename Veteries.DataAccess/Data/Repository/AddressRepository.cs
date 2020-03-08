@@ -24,7 +24,7 @@ namespace Veteries.DataAccess.Data.Repository
         {
             var objFromDb = _db.Address.FirstOrDefault(s => s.Id == address.Id);
 
-            objFromDb.City = address.City;
+            objFromDb.CityID = address.CityID;
             objFromDb.Street = address.Street;
             objFromDb.ZipCode = address.ZipCode;
 
