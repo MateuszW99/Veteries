@@ -16,6 +16,7 @@ namespace Veteries.DataAccess.Data
             Address = new AddressRepository(_db);
             Veterinarian = new VeterinarianRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
+            City = new CityRepository(_db);
         }
 
         public ISpeciesRepository Species { get; private set; }
@@ -24,6 +25,7 @@ namespace Veteries.DataAccess.Data
         public IAddressRepository Address { get; private set; }
         public IVeterinarianRepository Veterinarian { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public ICityRepository City { get; private set; }
 
         public void Dispose()
         {

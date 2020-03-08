@@ -17,11 +17,7 @@ namespace Veteries.DataAccess.Data.Repository
 
         public IEnumerable<SelectListItem> GetCityListForDropdown()
         {
-            return _db.Address.Select(i => new SelectListItem()
-            {
-                Text = i.City,
-                Value = i.Id.ToString()
-            }).Distinct().ToList();
+            return null;
         }
 
         public void Update(Address address)

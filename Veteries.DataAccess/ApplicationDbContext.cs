@@ -14,8 +14,8 @@ namespace Veteries.DataAccess
         public DbSet<Patient> Patient { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<Address> Address { get; set; }
+        public DbSet<City> City { get; set; }
         public DbSet<Veterinarian> Veterinarian { get; set; }
-
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }
