@@ -20,6 +20,6 @@ namespace Veteries.Models
         public string ZipCode { get; set; }
 
         [Required]
-        public string Street { get; set;; }
+        public string Street { get; set; }
     }
 }
