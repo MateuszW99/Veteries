@@ -10,22 +10,22 @@ namespace Veteries.Utility.Helper
             modelBuilder.Entity<City>().HasData(
                 new City
                 {
-                    ID = 1010,
+                    ID = 2000,
                     Name = "Warszawa"
                 },
                 new City
                 {
-                    ID = 1011,
+                    ID = 2001,
                     Name = "Kraków"
                 },
                 new City
                 {
-                    ID = 1012,
+                    ID = 2002,
                     Name = "Lublin"
                 },
                 new City
                 {
-                    ID = 1013,
+                    ID = 2003,
                     Name = "Poznań"
                 });
         }

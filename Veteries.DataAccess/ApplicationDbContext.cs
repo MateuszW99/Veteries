@@ -21,6 +21,7 @@ namespace Veteries.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.SeedCities();
         }
     }
