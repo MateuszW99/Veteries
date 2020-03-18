@@ -22,10 +22,6 @@ namespace Veteries.Controllers
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
-            if ( _userManager != null)
-            {
-                Console.WriteLine("ok");
-            }
         }
 
         [HttpGet]

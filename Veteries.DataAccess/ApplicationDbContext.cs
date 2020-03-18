@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Veteries.Models;
+using Veteries.Utility.Helper;
 
 namespace Veteries.DataAccess
 {
@@ -17,5 +18,11 @@ namespace Veteries.DataAccess
         public DbSet<City> City { get; set; }
         public DbSet<Veterinarian> Veterinarian { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.SeedCities();
+        }
     }
 }
