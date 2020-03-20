@@ -1,0 +1,48 @@
+﻿@page
+@model Veteries.Pages.Admin.Cities.UpsertModel
+
+<form method="post" asp-action="Upsert">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--Store id in the hidden field to make sure it's not 0 when updating-->
+            @if (Model.CityObj.ID != 0)
+            {
+                <input type="hidden" asp-for="CityObj.ID" />
+            }
+
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">@(Model.CityObj.ID != 0 ? "Update" : "Add") City</h2>
+            </div>
+
+            <div class="col-8 pt-3">
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="CityObj.Name"></label>
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" asp-for="CityObj.Name" />
+                        <span class="text-danger" asp-validation-for="CityObj.Name"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success form-control">
+                                    @(Model.CityObj.ID != 0 ? "Update" : "Add")
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-secondary form-control">Back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

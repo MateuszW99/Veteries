@@ -1,0 +1,27 @@
+﻿@page
+@model Veteries.Pages.Admin.Cities.IndexModel
+
+<div class="border backgroundWhite container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-secondary">Cities</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Upsert" class="btn btn-secondary"><i class="fas fa-plus"></i> &nbsp; Add new</a>
+        </div>
+    </div>
+    <br /><br />
+    <table id="DT_cities" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/cities.js"></script>
+}
